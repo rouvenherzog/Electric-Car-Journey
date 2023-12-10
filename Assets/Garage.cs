@@ -16,11 +16,19 @@ public class Garage : MonoBehaviour
 
     void Update()
     {
+
         if (SpawnedCars >= AmountCarsToSpawn) return;
         if(LastSpawnedCar && Vector3.Distance(LastSpawnedCar.transform.position, SpawnPoint.waypoint.transform.position) < 6) return;
 
+        SpawnedCars++;
+        LastSpawnedCar = AITrafficController.Instance.GetCarFromPool(Route);
+        if (LastSpawnedCar != null) return;
+
         LastSpawnedCar = Instantiate(CarPrefab, SpawnPoint.waypoint.transform.position + Vector3.up * 0.1f, SpawnPoint.transform.rotation, AITrafficController.Instance.transform);
         LastSpawnedCar.RegisterCar(Route);
-        SpawnedCars++;
+    }
+
+    public void Reset() {
+        SpawnedCars = 0;
     }
 }

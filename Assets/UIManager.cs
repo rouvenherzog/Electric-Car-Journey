@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using TurnTheGameOn.SimpleTrafficSystem;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
@@ -19,6 +20,8 @@ public class UIManager : MonoBehaviour
 
     public GameObject GameEndUI;
     public TextMeshProUGUI GameEndText;
+    public Button RegenerateButton;
+    public Button RetryButton;
     
     public GameObject PreparationUI;
     public TextMeshProUGUI PreparationText;
@@ -41,6 +44,31 @@ public class UIManager : MonoBehaviour
         Speed2XButton.onClick.AddListener(() => Time.timeScale = 2f);
         Speed4XButton.onClick.AddListener(() => Time.timeScale = 4f);
         StartButton.onClick.AddListener(() => GameManager.Instance.StartDay());
+
+        RegenerateButton.onClick.AddListener(HandleRegenerate);
+        RetryButton.onClick.AddListener(HandleRetry);
+    }
+
+    private void HandleRetry()
+    {
+        foreach(AITrafficCar car in FindObjectsOfType<AITrafficCar>()) {
+            if (car.gameObject == PlayerCar.Instance.gameObject)
+                continue;
+
+            AITrafficController.Instance.MoveCarToPool(car.assignedIndex);
+        }
+
+        foreach(Garage garage in FindObjectsOfType<Garage>())
+            garage.Reset();
+
+        PlayerCar.Instance.Reset();
+        GameManager.Instance.State = GameState.PREPARING;
+    }
+
+    private void HandleRegenerate()
+    {
+        TargetManager.Instance.Regenerate();
+        HandleRetry();
     }
 
     public void Update() {

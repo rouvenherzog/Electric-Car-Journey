@@ -99,9 +99,9 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.49411765, g: 1, b: 0.19215687, a: 1}
+      key0: {r: 0.19215685, g: 0.25612438, b: 1, a: 1}
       key1: {r: 0.49411765, g: 1, b: 0.19215687, a: 1}
-      key2: {r: 0, g: 0, b: 0, a: 0}
+      key2: {r: 0, g: 0, b: 0, a: 1}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
       key5: {r: 0, g: 0, b: 0, a: 0}
@@ -117,7 +117,7 @@ LineRenderer:
       ctime7: 0
       atime0: 0
       atime1: 65535
-      atime2: 0
+      atime2: 65535
       atime3: 0
       atime4: 0
       atime5: 0
@@ -149,8 +149,9 @@ GameObject:
   - component: {fileID: 1629245251882749846}
   - component: {fileID: 4294115368664291024}
   - component: {fileID: 4810969036480824104}
+  - component: {fileID: 9220109300080627196}
   m_Layer: 0
-  m_Name: Target Position
+  m_Name: Energy Position
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -209,9 +210,21 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   Waypoint: {fileID: 0}
-  VisitColor: {r: 0.49486858, g: 1, b: 0.19339621, a: 0.40392157}
-  NotVisitColor: {r: 1, g: 1, b: 1, a: 1}
+  VisitColor: {r: 0.60176516, g: 0.48584908, b: 1, a: 1}
+  NotVisitColor: {r: 0.60176516, g: 0.48584908, b: 1, a: 0.5019608}
   Line: {fileID: 6010442542081366232}
   IsVisiting: 0
   HasVisited: 0
-  VisitedText: Package delivered!
+  VisitedText: Energy recharged!
+--- !u!114 &9220109300080627196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7439605584631452867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b3f0b6b3f8ca4c0ea7639c269742da5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

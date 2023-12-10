@@ -1,12 +1,10 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using TurnTheGameOn.SimpleTrafficSystem;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class TargetPosition : MonoBehaviour
 {
+    public UnityEvent OnVisit = new();
     public AITrafficWaypoint Waypoint;
     public Color VisitColor;
     public Color NotVisitColor;
@@ -14,6 +12,7 @@ public class TargetPosition : MonoBehaviour
 
     public bool IsVisiting = false;
     public bool HasVisited = false;
+    public string VisitedText = "";
 
     public void Start() {
         transform.position = Waypoint.transform.position;        
@@ -31,8 +30,9 @@ public class TargetPosition : MonoBehaviour
         if (player == null) return;
 
         HasVisited = true;
-        player.Energy = 100f;
-        UIManager.Instance.ShowEvent("Package delivered!");
+        OnVisit.Invoke();
+        if (VisitedText != "")
+            UIManager.Instance.ShowEvent(VisitedText);
     }
 
     private void HandleRouteChanged()

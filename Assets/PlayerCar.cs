@@ -29,11 +29,20 @@ public class PlayerCar : MonoBehaviour
 
     public LineRenderer PathDrawer;
 
+    private Vector3 StartPosition;
+    private Quaternion StartRotation;
+
     // Start is called before the first frame update
     void Start()
     {
+        StartPosition = transform.position;
+        StartRotation = transform.rotation;
+
         AITrafficCar car = GetComponent<AITrafficCar>();
-        car.RegisterCar(StartWaypoint.onReachWaypointSettings.parentRoute);
+        AITrafficController.Instance.RegisterCarAI(
+            car,
+            StartWaypoint.onReachWaypointSettings.parentRoute
+        );
     }
 
     public void Update() {
@@ -52,13 +61,11 @@ public class PlayerCar : MonoBehaviour
     public void AddWaypoint(AITrafficWaypoint waypoint) {
         SelectedWaypoints.Add(waypoint);
         RefreshRoute();
-        OnRouteChanged.Invoke();
     }
 
     public void RemoveWaypoint(AITrafficWaypoint waypoint) {
         SelectedWaypoints.Remove(waypoint);
         RefreshRoute();
-        OnRouteChanged.Invoke();
     }
 
     private void RefreshRoute() {
@@ -81,6 +88,7 @@ public class PlayerCar : MonoBehaviour
                 )
                 .ToArray()
         );
+        OnRouteChanged.Invoke();
     }
 
     public AITrafficWaypoint GetNextTrafficWaypoint(AITrafficWaypoint currentNode, AITrafficWaypoint[] options) {
@@ -88,5 +96,21 @@ public class PlayerCar : MonoBehaviour
         CalculatedRoute.RemoveRange(0, currentIndex + 1);
 
         return options.First(node => node == CalculatedRoute.First());
+    }
+
+    public void Reset() {
+        transform.position = StartPosition;
+        transform.rotation = StartRotation;
+
+        Energy = 100f;
+        SelectedWaypoints.Clear();
+        CalculatedRoute.Clear();
+        RefreshRoute();
+
+        AITrafficCar car = GetComponent<AITrafficCar>();
+        AITrafficController.Instance.EnableCar(
+            car.assignedIndex,
+            StartWaypoint.onReachWaypointSettings.parentRoute
+        );
     }
 }

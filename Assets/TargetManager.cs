@@ -15,7 +15,9 @@ public class TargetManager : MonoBehaviour
     }
 
     public int TargetCount;
+    public int EnergyCount;
     public TargetPosition TargetPositionPrefab;
+    public TargetPosition EnergyPrefab;
     public List<TargetPosition> Targets = new();
 
     public void Start() {
@@ -33,5 +35,22 @@ public class TargetManager : MonoBehaviour
             target.Waypoint = waypoint;
             Targets.Add(target);
         }
+
+        for(int i = 0; i  < EnergyCount; i++) {
+            AITrafficWaypoint waypoint =
+                WaypointManager.Instance.GetRandomVisitableWaypoint();
+            TargetPosition target =
+                Instantiate(EnergyPrefab, transform);
+            target.Waypoint = waypoint;
+        }
+    }
+
+    public void Regenerate() {
+        Targets.Clear();
+        
+        foreach(TargetPosition target in FindObjectsOfType<TargetPosition>())
+            Destroy(target.gameObject);
+
+        SpawnTargets();
     }
 }

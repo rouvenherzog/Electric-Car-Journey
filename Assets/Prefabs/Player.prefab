@@ -242,7 +242,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   Energy: 100
-  EnergyLossPerSecond: 1
+  EnergyLossPerSecond: 2
   StartWaypoint: {fileID: 0}
   SelectedWaypoints: []
   CalculatedRoute: []
