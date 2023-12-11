@@ -9,8 +9,7 @@ public class CameraMovement : MonoBehaviour
     public float TargetRotation = 60f;
     public float RotationSpeed = 60f;
 
-    // Update is called once per frame
-    void Update()
+    public void Update()
     {
         float xDelta = Input.GetAxis("Horizontal");
         float zDelta = Input.GetAxis("Vertical");

@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
         if (State != GameState.PREPARING) return;
         
         State = GameState.RUNNING;
+        Time.timeScale = 1f;
         
         foreach(
             WaypointIndicator indicator in

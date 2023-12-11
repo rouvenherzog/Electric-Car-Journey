@@ -3,7 +3,6 @@ using TurnTheGameOn.SimpleTrafficSystem;
 using UnityEngine;
 using System.Linq;
 using UnityEngine.Events;
-using UnityEditor.Experimental.GraphView;
 
 public class WaypointManager : MonoBehaviour
 {

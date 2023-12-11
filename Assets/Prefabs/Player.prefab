@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8301614606903927970}
+  - component: {fileID: 625298531923829125}
   - component: {fileID: 8291487113433643489}
   - component: {fileID: 3353093603710464858}
   - component: {fileID: 188955700830965878}
@@ -16,7 +17,6 @@ GameObject:
   - component: {fileID: 4933590764385094001}
   - component: {fileID: 908631471007435130}
   - component: {fileID: 4915686268488242858}
-  - component: {fileID: 625298531923829125}
   m_Layer: 30
   m_Name: Player
   m_TagString: Untagged
@@ -51,6 +51,27 @@ Transform:
   - {fileID: 8653846217798530378}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
+--- !u!114 &625298531923829125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1411124067302063583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e55de736a85b2411b9fd3a073411696c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnRouteChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  Energy: 100
+  EnergyLossPerSecond: 1.5
+  StartWaypoint: {fileID: 0}
+  SelectedWaypoints: []
+  CalculatedRoute: []
+  PathDrawer: {fileID: 0}
 --- !u!54 &8291487113433643489
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -226,27 +247,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   centerOfMass: {x: 0, y: 0, z: 0}
---- !u!114 &625298531923829125
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1411124067302063583}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e55de736a85b2411b9fd3a073411696c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnRouteChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  Energy: 100
-  EnergyLossPerSecond: 2
-  StartWaypoint: {fileID: 0}
-  SelectedWaypoints: []
-  CalculatedRoute: []
-  PathDrawer: {fileID: 0}
 --- !u!1 &2184741529357421446
 GameObject:
   m_ObjectHideFlags: 0
