@@ -1,0 +1,18 @@
+{
+  "hosting": {
+    "public": "Build/Prototype-v0.1",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "headers": [ {
+      "source": "**/*.gz",
+      "headers": [ {
+        "key": "Content-Encoding",
+        "value": "gzip"
+      } ]
+    } ]
+  
+  }
+}
